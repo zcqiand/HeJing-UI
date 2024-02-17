@@ -4,7 +4,7 @@
 		<el-header>
 			<div class="logo flx-center">
 				<img src="@/assets/images/logo.png" alt="logo" />
-				<span>河精基础平台</span>
+				<span>河精基础框架</span>
 			</div>
 			<el-menu
 				mode="horizontal"
