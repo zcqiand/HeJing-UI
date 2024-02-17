@@ -110,7 +110,7 @@ const register = (formEl: FormInstance | undefined) => {
 			router.push(HOME_URL)
 			ElNotification({
 				title: getTimeState(),
-				message: "欢迎登录 HeJing",
+				message: "欢迎登录 河精基础平台",
 				type: "success",
 				duration: 3000
 			})
