@@ -1,4 +1,4 @@
-# HeJing:基于 ASP\.NET Core 的 基础框架
+# HeJing:基于 ASP\.NET Core+Vue 的基础框架 - 后端部分
 
 ## 系统介绍
 
