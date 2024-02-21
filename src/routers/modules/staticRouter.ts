@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from "vue-router"
-import { HOME_URL, LOGIN_URL, REGISTER_URL } from "@/config/config"
+import { HOME_URL, LOGIN_URL, CALL_BACK_URL } from "@/config/config"
 
 /**
  * staticRouter(静态路由)
@@ -18,11 +18,11 @@ export const staticRouter: RouteRecordRaw[] = [
 		}
 	},
 	{
-		path: REGISTER_URL,
-		name: "register",
-		component: () => import("@/views/login/register.vue"),
+		path: CALL_BACK_URL,
+		name: "callback",
+		component: () => import("@/views/login/callback.vue"),
 		meta: {
-			title: "注册新用户"
+			title: "登录成功的返回地址"
 		}
 	},
 	{

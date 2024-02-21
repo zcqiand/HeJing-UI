@@ -12,18 +12,18 @@ import { KeepAliveStore } from "@/stores/modules/keepAlive"
 import { getTimeState } from "@/utils/util"
 import { HOME_URL } from "@/config/config"
 import { initDynamicRouter } from "@/routers/modules/dynamicRouter"
-import AuthService from "@/services/auth.service"
+import { UserManager, WebStorageStateStore } from "oidc-client"
 
 const router = useRouter()
 const tabsStore = TabsStore()
 const keepAlive = KeepAliveStore()
 const globalStore = GlobalStore()
-const auth = new AuthService()
 
 onMounted(() => {
-	auth.getUser().then(async (user: any) => {
-		console.log("getUser response success", user)
-		if (user && user !== null && !user.expired) {
+	const mgr = new UserManager({ response_mode: "query", userStore: new WebStorageStateStore() })
+		.signinRedirectCallback()
+		.then(async function (user) {
+			console.log("signin response success", user)
 			globalStore.setToken(user.access_token)
 			// 2.添加动态路由
 			await initDynamicRouter()
@@ -38,11 +38,10 @@ onMounted(() => {
 				type: "success",
 				duration: 3000
 			})
-		} else {
-			// 1.执行登录接口
-			await auth.login()
-		}
-	})
+		})
+		.catch(function (err) {
+			console.log(err)
+		})
 })
 </script>
 
