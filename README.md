@@ -14,7 +14,7 @@ HeJing 是一个基础架构，用于创建基于 ASP\.NET Core+Vue 平台的软
 
 ### 业务模块：
 
-- [ ] 统一集成 IdentityServer4 认证
+- [x] 统一集成 IdentityServer4 认证
 - [ ] 统一集成 微信 认证
 - [ ] 实现 RBAC 权限控制
 - [ ] 实现多租户
