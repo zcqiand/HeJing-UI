@@ -116,34 +116,6 @@
 					}
 				},
 				{
-					"path": "/management/common/organDepartment",
-					"name": "management-common-organDepartment",
-					"component": "/management/common/organDepartment/index",
-					"meta": {
-						"icon": "Document",
-						"title": "部门管理",
-						"isLink": "",
-						"isHide": false,
-						"isFull": false,
-						"isAffix": false,
-						"isKeepAlive": true
-					}
-				},
-				{
-					"path": "/management/common/organEmployee",
-					"name": "management-common-organEmployee",
-					"component": "/management/common/organEmployee/index",
-					"meta": {
-						"icon": "Document",
-						"title": "员工管理",
-						"isLink": "",
-						"isHide": false,
-						"isFull": false,
-						"isAffix": false,
-						"isKeepAlive": true
-					}
-				},
-				{
 					"path": "/management/common/organRole",
 					"name": "management-common-organRole",
 					"component": "/management/common/organRole/index",
@@ -164,6 +136,34 @@
 					"meta": {
 						"icon": "Document",
 						"title": "用户管理",
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/management/common/organDepartment",
+					"name": "management-common-organDepartment",
+					"component": "/management/common/organDepartment/index",
+					"meta": {
+						"icon": "Document",
+						"title": "部门管理",
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/management/common/organEmployee",
+					"name": "management-common-organEmployee",
+					"component": "/management/common/organEmployee/index",
+					"meta": {
+						"icon": "Document",
+						"title": "员工管理",
 						"isLink": "",
 						"isHide": false,
 						"isFull": false,
