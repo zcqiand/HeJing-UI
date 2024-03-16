@@ -3,7 +3,7 @@
 /* 新增 */
 export function createApi(data: any) {
 	return request({
-		url: AppBaseURL + "/isp/organDepartment/Create",
+		url: AppBaseURL + "/common/organDepartment/Create",
 		method: "post",
 		data
 	})
@@ -12,7 +12,7 @@ export function createApi(data: any) {
 /* 更新 */
 export function updateApi(data: any) {
 	return request({
-		url: AppBaseURL + "/isp/organDepartment/Update",
+		url: AppBaseURL + "/common/organDepartment/Update",
 		method: "post",
 		data
 	})
@@ -21,7 +21,7 @@ export function updateApi(data: any) {
 /* 删除 */
 export function deleteApi(data: any) {
 	return request({
-		url: AppBaseURL + "/isp/organDepartment/Delete",
+		url: AppBaseURL + "/common/organDepartment/Delete",
 		method: "post",
 		data
 	})
@@ -30,7 +30,7 @@ export function deleteApi(data: any) {
 /* 批量删除 */
 export function batchDeleteApi(data: any) {
 	return request({
-		url: AppBaseURL + "/isp/organDepartment/BatchDelete",
+		url: AppBaseURL + "/common/organDepartment/BatchDelete",
 		method: "post",
 		data
 	})
@@ -39,7 +39,7 @@ export function batchDeleteApi(data: any) {
 /* 获取清单 */
 export function queryApi(params: any) {
 	return request({
-		url: AppBaseURL + "/isp/organDepartment/Query",
+		url: AppBaseURL + "/common/organDepartment/Query",
 		method: "get",
 		params
 	})
@@ -48,7 +48,7 @@ export function queryApi(params: any) {
 /* 获取树清单 */
 export function queryTreeSelectApi(params: any) {
 	return request({
-		url: AppBaseURL + "/isp/organDepartment/QueryTreeSelect",
+		url: AppBaseURL + "/common/organDepartment/QueryTreeSelect",
 		method: "get",
 		params
 	})
@@ -57,7 +57,7 @@ export function queryTreeSelectApi(params: any) {
 /* 获取详情 */
 export function getApi(params: any) {
 	return request({
-		url: AppBaseURL + "/isp/organDepartment/Get",
+		url: AppBaseURL + "/common/organDepartment/Get",
 		method: "get",
 		params
 	})

@@ -37,7 +37,7 @@
 <script lang="ts" setup>
 import { reactive, ref, defineExpose, onMounted } from "vue"
 import { type FormInstance, type FormRules, ElMessage } from "element-plus"
-import { getApi, createApi, updateApi, queryTreeSelectApi } from "@/api/management/isp/organDepartment"
+import { getApi, createApi, updateApi, queryTreeSelectApi } from "@/api/management/common/organDepartment"
 
 //#region 初始化
 const organId = ref<string | undefined>(undefined)

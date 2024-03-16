@@ -94,8 +94,8 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
-import { queryApi as queryOrganApi } from "@/api/management/isp/organs"
-import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/organEmployee"
+import { queryApi as queryOrganApi } from "@/api/management/common/organs"
+import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/common/organEmployee"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"

@@ -81,7 +81,7 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
-import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/appResource"
+import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/common/appResource"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"

@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { reactive, ref, defineExpose, onMounted } from "vue"
 import { type FormInstance, type FormRules, ElMessage } from "element-plus"
-import { getApi, createApi, updateApi } from "@/api/management/isp/organUserRole"
+import { getApi, createApi, updateApi } from "@/api/management/common/organUserRole"
 
 //#region 初始化
 const emit = defineEmits(["success"])
@@ -61,11 +61,11 @@ const dialogVisible = ref<boolean>(false)
 const formRef = ref<FormInstance | null>(null)
 const formData = reactive({
 	userId: "",
-	roleId: "",
+	roleId: ""
 })
 const formRules: FormRules = reactive({
 	userId: [{ required: true, trigger: "blur", message: "请输入用户标识" }],
-	roleId: [{ required: true, trigger: "blur", message: "请输入角色标识" }],
+	roleId: [{ required: true, trigger: "blur", message: "请输入角色标识" }]
 })
 const handleCreate = () => {
 	formRef.value?.validate((valid: boolean) => {
@@ -73,7 +73,7 @@ const handleCreate = () => {
 			if (currentUpdateId.value === undefined) {
 				createApi({
 					userId: formData.userId,
-					roleId: formData.roleId,
+					roleId: formData.roleId
 				}).then(() => {
 					dialogVisible.value = false
 					emit("success")
@@ -82,7 +82,7 @@ const handleCreate = () => {
 				updateApi({
 					id: currentUpdateId.value,
 					userId: formData.userId,
-					roleId: formData.roleId,
+					roleId: formData.roleId
 				}).then(() => {
 					ElMessage.success("修改成功")
 					dialogVisible.value = false
@@ -100,7 +100,7 @@ const handleSaveAs = () => {
 		if (valid) {
 			createApi({
 				userId: formData.userId,
-				roleId: formData.roleId,
+				roleId: formData.roleId
 			}).then(() => {
 				dialogVisible.value = false
 				emit("success")
@@ -116,4 +116,3 @@ defineExpose({
 	handleUpdate
 })
 </script>
-

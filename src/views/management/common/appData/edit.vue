@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import { reactive, ref, defineExpose, onMounted } from "vue"
 import { type FormInstance, type FormRules, ElMessage } from "element-plus"
-import { getApi, createApi, updateApi } from "@/api/management/isp/appData"
+import { getApi, createApi, updateApi } from "@/api/management/common/appData"
 
 //#region 初始化
 const emit = defineEmits(["success"])
@@ -73,12 +73,12 @@ const formData = reactive({
 	code: "",
 	name: "",
 	remark: "",
-	sortNo: "",
+	sortNo: ""
 })
 const formRules: FormRules = reactive({
 	code: [{ required: true, trigger: "blur", message: "请输入编号" }],
 	name: [{ required: true, trigger: "blur", message: "请输入名称" }],
-	sortNo: [{ required: true, trigger: "blur", message: "请输入排序号" }],
+	sortNo: [{ required: true, trigger: "blur", message: "请输入排序号" }]
 })
 const handleCreate = () => {
 	formRef.value?.validate((valid: boolean) => {
@@ -88,7 +88,7 @@ const handleCreate = () => {
 					code: formData.code,
 					name: formData.name,
 					remark: formData.remark,
-					sortNo: formData.sortNo,
+					sortNo: formData.sortNo
 				}).then(() => {
 					dialogVisible.value = false
 					emit("success")
@@ -99,7 +99,7 @@ const handleCreate = () => {
 					code: formData.code,
 					name: formData.name,
 					remark: formData.remark,
-					sortNo: formData.sortNo,
+					sortNo: formData.sortNo
 				}).then(() => {
 					ElMessage.success("修改成功")
 					dialogVisible.value = false
@@ -119,7 +119,7 @@ const handleSaveAs = () => {
 				code: formData.code,
 				name: formData.name,
 				remark: formData.remark,
-				sortNo: formData.sortNo,
+				sortNo: formData.sortNo
 			}).then(() => {
 				dialogVisible.value = false
 				emit("success")

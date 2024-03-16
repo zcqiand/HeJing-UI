@@ -16,9 +16,9 @@
 			}
 		},
 		{
-			"path": "/management/isp",
+			"path": "/management/common",
 			"name": "management-isp",
-			"redirect": "/management/isp/index",
+			"redirect": "/management/common/index",
 			"meta": {
 				"icon": "Management",
 				"title": "权限管理",
@@ -30,9 +30,9 @@
 			},
 			"children": [
 				{
-					"path": "/management/isp/apps",
+					"path": "/management/common/apps",
 					"name": "management-isp-apps",
-					"component": "/management/isp/apps/index",
+					"component": "/management/common/apps/index",
 					"meta": {
 						"icon": "Document",
 						"title": "应用管理",
@@ -44,9 +44,9 @@
 					}
 				},
 				{
-					"path": "/management/isp/appResource",
+					"path": "/management/common/appResource",
 					"name": "management-isp-appResource",
-					"component": "/management/isp/appResource/index",
+					"component": "/management/common/appResource/index",
 					"meta": {
 						"icon": "Document",
 						"title": "资源管理",
@@ -58,9 +58,9 @@
 					}
 				},
 				{
-					"path": "/management/isp/appFunction",
+					"path": "/management/common/appFunction",
 					"name": "management-isp-appFunction",
-					"component": "/management/isp/appFunction/index",
+					"component": "/management/common/appFunction/index",
 					"meta": {
 						"icon": "Document",
 						"title": "功能管理",
@@ -72,9 +72,9 @@
 					}
 				},
 				{
-					"path": "/management/isp/organUser",
+					"path": "/management/common/organUser",
 					"name": "management-isp-organUser",
-					"component": "/management/isp/organUser/index",
+					"component": "/management/common/organUser/index",
 					"meta": {
 						"icon": "Document",
 						"title": "用户管理",
@@ -86,9 +86,9 @@
 					}
 				},
 				{
-					"path": "/management/isp/organRole",
+					"path": "/management/common/organRole",
 					"name": "management-isp-organRole",
-					"component": "/management/isp/organRole/index",
+					"component": "/management/common/organRole/index",
 					"meta": {
 						"icon": "Document",
 						"title": "角色管理",
@@ -116,9 +116,9 @@
 			},
 			"children": [
 				{
-					"path": "/management/isp/organs",
+					"path": "/management/common/organs",
 					"name": "management-isp-organs",
-					"component": "/management/isp/organs/index",
+					"component": "/management/common/organs/index",
 					"meta": {
 						"icon": "Document",
 						"title": "机构管理",
@@ -130,9 +130,9 @@
 					}
 				},
 				{
-					"path": "/management/isp/organDepartment",
+					"path": "/management/common/organDepartment",
 					"name": "management-isp-organDepartment",
-					"component": "/management/isp/organDepartment/index",
+					"component": "/management/common/organDepartment/index",
 					"meta": {
 						"icon": "Document",
 						"title": "部门管理",
@@ -144,9 +144,9 @@
 					}
 				},
 				{
-					"path": "/management/isp/organEmployee",
+					"path": "/management/common/organEmployee",
 					"name": "management-isp-organEmployee",
-					"component": "/management/isp/organEmployee/index",
+					"component": "/management/common/organEmployee/index",
 					"meta": {
 						"icon": "Document",
 						"title": "员工管理",
@@ -174,9 +174,9 @@
 			},
 			"children": [
 				{
-					"path": "/management/isp/appOperationLog",
+					"path": "/management/common/appOperationLog",
 					"name": "management-isp-appOperationLog",
-					"component": "/management/isp/appOperationLog/index",
+					"component": "/management/common/appOperationLog/index",
 					"meta": {
 						"icon": "Document",
 						"title": "操作日志",
@@ -188,9 +188,9 @@
 					}
 				},
 				{
-					"path": "/management/isp/appAuditLog",
+					"path": "/management/common/appAuditLog",
 					"name": "management-isp-appAuditLog",
-					"component": "/management/isp/appAuditLog/index",
+					"component": "/management/common/appAuditLog/index",
 					"meta": {
 						"icon": "Document",
 						"title": "审计日志",

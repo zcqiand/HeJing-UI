@@ -45,7 +45,7 @@
 <script lang="ts" setup>
 import { reactive, ref, defineExpose, onMounted } from "vue"
 import { type FormInstance, type FormRules, ElMessage } from "element-plus"
-import { getApi, createApi, updateApi } from "@/api/management/isp/organs"
+import { getApi, createApi, updateApi } from "@/api/management/common/organs"
 
 //#region 初始化
 const emit = defineEmits(["success"])
