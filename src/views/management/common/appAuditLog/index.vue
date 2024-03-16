@@ -72,7 +72,7 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
-import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/appOperationLog"
+import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/appAuditLog"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
@@ -206,3 +206,4 @@ const handleBatchDelete = () => {
 <style lang="scss" scoped>
 @import "../../index.scss";
 </style>
+@/api/management/common/appAuditLog

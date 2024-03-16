@@ -14,6 +14,7 @@
 			</div>
 			<div class="toolbar-wrapper">
 				<div>
+					<el-button type="primary" :icon="CirclePlus" @click="handleAdd">新增</el-button>
 					<el-button type="danger" :icon="Delete" :disabled="selection.length == 0" @click="handleBatchDelete"
 						>批量删除</el-button
 					>
@@ -33,6 +34,7 @@
 					<el-table-column prop="lastModifyTime" :formatter="dateFormat" label="最后更新时间" width="150" align="center" />
 					<el-table-column fixed="right" label="操作" width="140" align="center">
 						<template #default="scope">
+							<el-button type="primary" text bg size="small" @click="handleEdit(scope.row)">修改</el-button>
 							<el-dropdown
 								@command="
 											(command: string) => {
@@ -66,17 +68,19 @@
 				/>
 			</div>
 		</el-card>
+		<edit v-if="dialogVisible" ref="editRef" @success="handleSaveSuccess"></edit>
 	</div>
 </template>
 
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
-import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/appAuditLog"
+import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/appData"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
 import moment from "moment"
+import edit from "./edit.vue"
 
 //#region 初始化
 const loading = ref<boolean>(false)
@@ -206,3 +210,5 @@ const handleBatchDelete = () => {
 <style lang="scss" scoped>
 @import "../../index.scss";
 </style>
+
+@/api/management/common/appData

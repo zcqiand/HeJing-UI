@@ -28,8 +28,14 @@
 			<div class="table-wrapper">
 				<el-table :data="tableData" row-key="id" @selection-change="selectionChange" border default-expand-all>
 					<el-table-column type="selection" width="50" align="center" />
-					<el-table-column prop="name" label="名称">
+					<el-table-column prop="title" label="标题" width="150">
+						<template #default="scope">{{ scope.row.title }}</template>
+					</el-table-column>
+					<el-table-column prop="name" label="名称" width="150">
 						<template #default="scope">{{ scope.row.name }}</template>
+					</el-table-column>
+					<el-table-column prop="path" label="路径">
+						<template #default="scope">{{ scope.row.path }}</template>
 					</el-table-column>
 					<el-table-column prop="lastModifyTime" :formatter="dateFormat" label="最后更新时间" width="150" align="center" />
 					<el-table-column fixed="right" label="操作" width="140" align="center">
@@ -75,7 +81,7 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
-import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/apps"
+import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/isp/appResource"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
@@ -210,3 +216,4 @@ const handleBatchDelete = () => {
 <style lang="scss" scoped>
 @import "../../index.scss";
 </style>
+@/api/management/common/appResource

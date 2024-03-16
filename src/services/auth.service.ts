@@ -4,19 +4,16 @@ export default class AuthService {
 	private userManager: UserManager
 
 	constructor() {
-		const IdentityServer: string = "https://localhost:7216"
-		const AppServer: string = "http://localhost:3305"
-
 		const settings: any = {
 			userStore: new WebStorageStateStore({ store: window.localStorage }),
-			authority: IdentityServer,
+			authority: import.meta.env.VITE_IDENTITY_URL,
 			client_id: "vuejs_code_client",
-			redirect_uri: `${AppServer}/callback.html`,
+			redirect_uri: `${import.meta.env.VITE_APP_URL}/callback.html`,
 			automaticSilentRenew: true,
-			silent_redirect_uri: `${AppServer}/silent-renew.html`,
+			silent_redirect_uri: `${import.meta.env.VITE_APP_URL}/silent-renew.html`,
 			response_type: "code",
 			scope: "openid offline_access",
-			post_logout_redirect_uri: AppServer,
+			post_logout_redirect_uri: import.meta.env.VITE_APP_URL,
 			filterProtocolClaims: true
 		}
 

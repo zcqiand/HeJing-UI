@@ -102,6 +102,4 @@ class RequestHttp {
 
 export const http = new RequestHttp(config)
 export const request = http.service.request
-export const AppBaseURL = import.meta.env.VITE_APP_API_URL as string
-export const SsoBaseURL = import.meta.env.VITE_SSO_API_URL as string
-export const UumsBaseURL = import.meta.env.VITE_UUMS_API_URL as string
+export const CommonBaseURL = import.meta.env.VITE_COMMON_API_URL as string

@@ -262,3 +262,4 @@ defineExpose({
 	handleUpdate
 })
 </script>
+@/api/management/common/appResource

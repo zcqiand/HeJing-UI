@@ -141,3 +141,4 @@ defineExpose({
 	handleUpdate
 })
 </script>
+@/api/management/common/apps

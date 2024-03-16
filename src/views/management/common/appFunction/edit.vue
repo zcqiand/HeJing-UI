@@ -8,6 +8,9 @@
 			<el-form-item prop="name" label="名称">
 				<el-input v-model="formData.name" placeholder="请输入" />
 			</el-form-item>
+			<el-form-item prop="remark" label="备注">
+				<el-input v-model="formData.remark" placeholder="请输入" />
+			</el-form-item>
 			<el-form-item prop="sortNo" label="排序号">
 				<el-input v-model="formData.sortNo" placeholder="请输入" />
 			</el-form-item>
@@ -23,7 +26,7 @@
 <script lang="ts" setup>
 import { reactive, ref, defineExpose, onMounted } from "vue"
 import { type FormInstance, type FormRules, ElMessage } from "element-plus"
-import { getApi, createApi, updateApi } from "@/api/management/isp/organRole"
+import { getApi, createApi, updateApi } from "@/api/management/isp/appFunction"
 
 //#region 初始化
 const emit = defineEmits(["success"])
@@ -45,6 +48,7 @@ const handleUpdate = (id: undefined | string) => {
 			.then((res: any) => {
 				formData.code = res.data.code
 				formData.name = res.data.name
+				formData.remark = res.data.remark
 				formData.sortNo = res.data.sortNo
 			})
 			.catch(() => {
@@ -59,6 +63,7 @@ const resetForm = () => {
 	currentUpdateId.value = undefined
 	formData.code = ""
 	formData.name = ""
+	formData.remark = ""
 	formData.sortNo = ""
 }
 //保存
@@ -67,6 +72,7 @@ const formRef = ref<FormInstance | null>(null)
 const formData = reactive({
 	code: "",
 	name: "",
+	remark: "",
 	sortNo: ""
 })
 const formRules: FormRules = reactive({
@@ -81,6 +87,7 @@ const handleCreate = () => {
 				createApi({
 					code: formData.code,
 					name: formData.name,
+					remark: formData.remark,
 					sortNo: formData.sortNo
 				}).then(() => {
 					dialogVisible.value = false
@@ -91,6 +98,7 @@ const handleCreate = () => {
 					id: currentUpdateId.value,
 					code: formData.code,
 					name: formData.name,
+					remark: formData.remark,
 					sortNo: formData.sortNo
 				}).then(() => {
 					ElMessage.success("修改成功")
@@ -110,6 +118,7 @@ const handleSaveAs = () => {
 			createApi({
 				code: formData.code,
 				name: formData.name,
+				remark: formData.remark,
 				sortNo: formData.sortNo
 			}).then(() => {
 				dialogVisible.value = false
@@ -126,3 +135,4 @@ defineExpose({
 	handleUpdate
 })
 </script>
+@/api/management/common/appFunction

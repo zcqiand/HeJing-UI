@@ -136,3 +136,4 @@ defineExpose({
 })
 </script>
 
+@/api/management/common/appData
