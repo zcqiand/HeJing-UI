@@ -130,20 +130,6 @@
 					}
 				},
 				{
-					"path": "/management/common/organUser",
-					"name": "management-common-organUser",
-					"component": "/management/common/organUser/index",
-					"meta": {
-						"icon": "Document",
-						"title": "用户管理",
-						"isLink": "",
-						"isHide": false,
-						"isFull": false,
-						"isAffix": false,
-						"isKeepAlive": true
-					}
-				},
-				{
 					"path": "/management/common/organDepartment",
 					"name": "management-common-organDepartment",
 					"component": "/management/common/organDepartment/index",
