@@ -45,13 +45,13 @@ const logout = () => {
 		cancelButtonText: "取消",
 		type: "warning"
 	}).then(async () => {
-		// 2.清除 Token
+		// 1.清除 Token
 		globalStore.setToken("")
-		// 1.调用退出登录接口
+		// 2.调用退出登录接口
 		auth.logout()
-		// // 3.重定向到登陆页
-		// router.replace(LOGIN_URL)
-		// ElMessage.success("退出登录成功！")
+		// 3.重定向到登陆页
+		router.replace(LOGIN_URL)
+		ElMessage.success("退出登录成功！")
 	})
 }
 

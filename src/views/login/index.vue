@@ -1,5 +1,5 @@
 <template>
-	<div></div>
+	<div>Waiting...</div>
 </template>
 
 <script setup lang="ts" name="login">
@@ -22,7 +22,6 @@ const auth = new AuthService()
 
 onMounted(() => {
 	auth.getUser().then(async (user: any) => {
-		console.log("getUser response success", user)
 		if (user && user !== null && !user.expired) {
 			globalStore.setToken(user.access_token)
 			// 2.添加动态路由
@@ -34,7 +33,7 @@ onMounted(() => {
 			router.push(HOME_URL)
 			ElNotification({
 				title: getTimeState(),
-				message: "欢迎登录 河精基础框架",
+				message: "欢迎登录 南荣基础框架",
 				type: "success",
 				duration: 3000
 			})
