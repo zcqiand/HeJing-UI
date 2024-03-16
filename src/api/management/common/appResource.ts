@@ -1,9 +1,9 @@
-﻿import { request, AppBaseURL } from "@/api"
+﻿import { request, CommonBaseURL } from "@/api"
 
 /* 新增 */
 export function createApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/appResource/Create",
+		url: CommonBaseURL + "/common/appResource/Create",
 		method: "post",
 		data
 	})
@@ -12,7 +12,7 @@ export function createApi(data: any) {
 /* 更新 */
 export function updateApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/appResource/Update",
+		url: CommonBaseURL + "/common/appResource/Update",
 		method: "post",
 		data
 	})
@@ -21,7 +21,7 @@ export function updateApi(data: any) {
 /* 删除 */
 export function deleteApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/appResource/Delete",
+		url: CommonBaseURL + "/common/appResource/Delete",
 		method: "post",
 		data
 	})
@@ -30,7 +30,7 @@ export function deleteApi(data: any) {
 /* 批量删除 */
 export function batchDeleteApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/appResource/BatchDelete",
+		url: CommonBaseURL + "/common/appResource/BatchDelete",
 		method: "post",
 		data
 	})
@@ -39,7 +39,7 @@ export function batchDeleteApi(data: any) {
 /* 获取清单 */
 export function queryApi(params: any) {
 	return request({
-		url: AppBaseURL + "/common/appResource/Query",
+		url: CommonBaseURL + "/common/appResource/Query",
 		method: "get",
 		params
 	})
@@ -48,7 +48,7 @@ export function queryApi(params: any) {
 /* 获取树清单 */
 export function queryTreeSelectApi(params: any) {
 	return request({
-		url: AppBaseURL + "/common/appResource/QueryTreeSelect",
+		url: CommonBaseURL + "/common/appResource/QueryTreeSelect",
 		method: "get",
 		params
 	})
@@ -57,7 +57,7 @@ export function queryTreeSelectApi(params: any) {
 /* 获取详情 */
 export function getApi(params: any) {
 	return request({
-		url: AppBaseURL + "/common/appResource/Get",
+		url: CommonBaseURL + "/common/appResource/Get",
 		method: "get",
 		params
 	})

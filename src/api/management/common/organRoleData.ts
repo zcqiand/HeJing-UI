@@ -1,9 +1,9 @@
-﻿import { request, AppBaseURL } from "@/api"
+﻿import { request, CommonBaseURL } from "@/api"
 
 /* 新增 */
 export function createApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/organRoleData/Create",
+		url: CommonBaseURL + "/common/organRoleData/Create",
 		method: "post",
 		data
 	})
@@ -12,7 +12,7 @@ export function createApi(data: any) {
 /* 更新 */
 export function updateApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/organRoleData/Update",
+		url: CommonBaseURL + "/common/organRoleData/Update",
 		method: "post",
 		data
 	})
@@ -21,7 +21,7 @@ export function updateApi(data: any) {
 /* 删除 */
 export function deleteApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/organRoleData/Delete",
+		url: CommonBaseURL + "/common/organRoleData/Delete",
 		method: "post",
 		data
 	})
@@ -30,7 +30,7 @@ export function deleteApi(data: any) {
 /* 批量删除 */
 export function batchDeleteApi(data: any) {
 	return request({
-		url: AppBaseURL + "/common/organRoleData/BatchDelete",
+		url: CommonBaseURL + "/common/organRoleData/BatchDelete",
 		method: "post",
 		data
 	})
@@ -39,7 +39,7 @@ export function batchDeleteApi(data: any) {
 /* 获取清单 */
 export function queryApi(params: any) {
 	return request({
-		url: AppBaseURL + "/common/organRoleData/Query",
+		url: CommonBaseURL + "/common/organRoleData/Query",
 		method: "get",
 		params
 	})
@@ -48,7 +48,7 @@ export function queryApi(params: any) {
 /* 获取详情 */
 export function getApi(params: any) {
 	return request({
-		url: AppBaseURL + "/common/organRoleData/Get",
+		url: CommonBaseURL + "/common/organRoleData/Get",
 		method: "get",
 		params
 	})

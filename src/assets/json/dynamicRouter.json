@@ -17,11 +17,11 @@
 		},
 		{
 			"path": "/management/common",
-			"name": "management-isp",
+			"name": "management-common",
 			"redirect": "/management/common/index",
 			"meta": {
 				"icon": "Management",
-				"title": "权限管理",
+				"title": "应用管理",
 				"isLink": "",
 				"isHide": false,
 				"isFull": false,
@@ -31,7 +31,7 @@
 			"children": [
 				{
 					"path": "/management/common/apps",
-					"name": "management-isp-apps",
+					"name": "management-common-apps",
 					"component": "/management/common/apps/index",
 					"meta": {
 						"icon": "Document",
@@ -45,7 +45,7 @@
 				},
 				{
 					"path": "/management/common/appResource",
-					"name": "management-isp-appResource",
+					"name": "management-common-appResource",
 					"component": "/management/common/appResource/index",
 					"meta": {
 						"icon": "Document",
@@ -59,7 +59,7 @@
 				},
 				{
 					"path": "/management/common/appFunction",
-					"name": "management-isp-appFunction",
+					"name": "management-common-appFunction",
 					"component": "/management/common/appFunction/index",
 					"meta": {
 						"icon": "Document",
@@ -72,26 +72,12 @@
 					}
 				},
 				{
-					"path": "/management/common/organUser",
-					"name": "management-isp-organUser",
-					"component": "/management/common/organUser/index",
+					"path": "/management/common/appOperationLog",
+					"name": "management-common-appOperationLog",
+					"component": "/management/common/appOperationLog/index",
 					"meta": {
 						"icon": "Document",
-						"title": "用户管理",
-						"isLink": "",
-						"isHide": false,
-						"isFull": false,
-						"isAffix": false,
-						"isKeepAlive": true
-					}
-				},
-				{
-					"path": "/management/common/organRole",
-					"name": "management-isp-organRole",
-					"component": "/management/common/organRole/index",
-					"meta": {
-						"icon": "Document",
-						"title": "角色管理",
+						"title": "操作日志",
 						"isLink": "",
 						"isHide": false,
 						"isFull": false,
@@ -117,7 +103,7 @@
 			"children": [
 				{
 					"path": "/management/common/organs",
-					"name": "management-isp-organs",
+					"name": "management-common-organs",
 					"component": "/management/common/organs/index",
 					"meta": {
 						"icon": "Document",
@@ -131,7 +117,7 @@
 				},
 				{
 					"path": "/management/common/organDepartment",
-					"name": "management-isp-organDepartment",
+					"name": "management-common-organDepartment",
 					"component": "/management/common/organDepartment/index",
 					"meta": {
 						"icon": "Document",
@@ -145,7 +131,7 @@
 				},
 				{
 					"path": "/management/common/organEmployee",
-					"name": "management-isp-organEmployee",
+					"name": "management-common-organEmployee",
 					"component": "/management/common/organEmployee/index",
 					"meta": {
 						"icon": "Document",
@@ -156,30 +142,14 @@
 						"isAffix": false,
 						"isKeepAlive": true
 					}
-				}
-			]
-		},
-		{
-			"path": "/management/log",
-			"name": "management-log",
-			"redirect": "/management/log/index",
-			"meta": {
-				"icon": "Management",
-				"title": "日志管理",
-				"isLink": "",
-				"isHide": false,
-				"isFull": false,
-				"isAffix": false,
-				"isKeepAlive": true
-			},
-			"children": [
+				},
 				{
-					"path": "/management/common/appOperationLog",
-					"name": "management-isp-appOperationLog",
-					"component": "/management/common/appOperationLog/index",
+					"path": "/management/common/organRole",
+					"name": "management-common-organRole",
+					"component": "/management/common/organRole/index",
 					"meta": {
 						"icon": "Document",
-						"title": "操作日志",
+						"title": "角色管理",
 						"isLink": "",
 						"isHide": false,
 						"isFull": false,
@@ -188,12 +158,12 @@
 					}
 				},
 				{
-					"path": "/management/common/appAuditLog",
-					"name": "management-isp-appAuditLog",
-					"component": "/management/common/appAuditLog/index",
+					"path": "/management/common/organUser",
+					"name": "management-common-organUser",
+					"component": "/management/common/organUser/index",
 					"meta": {
 						"icon": "Document",
-						"title": "审计日志",
+						"title": "用户管理",
 						"isLink": "",
 						"isHide": false,
 						"isFull": false,
