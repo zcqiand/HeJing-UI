@@ -8,12 +8,12 @@ export default class AuthService {
 			userStore: new WebStorageStateStore({ store: window.localStorage }),
 			authority: import.meta.env.VITE_IDENTITY_URL,
 			client_id: `${import.meta.env.VITE_CLIENT_ID}`,
-			redirect_uri: `${import.meta.env.VITE_APP_URL}/callback.html`,
+			redirect_uri: `${import.meta.env.VITE_APP_APP_URL}/callback.html`,
 			automaticSilentRenew: true,
-			silent_redirect_uri: `${import.meta.env.VITE_APP_URL}/silent-renew.html`,
+			silent_redirect_uri: `${import.meta.env.VITE_APP_APP_URL}/silent-renew.html`,
 			response_type: `${import.meta.env.VITE_GRANT_TYPE}`,
 			scope: "openid offline_access",
-			post_logout_redirect_uri: `${import.meta.env.VITE_APP_URL}/`,
+			post_logout_redirect_uri: `${import.meta.env.VITE_APP_APP_URL}/`,
 			filterProtocolClaims: true
 		}
 
