@@ -32,7 +32,7 @@ jobs:
       - name: ssh login and pull Docker image
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.TENCENT_CLOUD_IP }}
-          username: ${{ secrets.TENCENT_CLOUD_NAME }}
-          password: ${{ secrets.TENCENT_CLOUD_PASSWORD }}
+          host: ${{ secrets.CLOUD_IP }}
+          username: ${{ secrets.CLOUD_NAME }}
+          password: ${{ secrets.CLOUD_PASSWORD }}
           script:  /home/app/changli && sudo sh hejing-ui.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
