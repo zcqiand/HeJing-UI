@@ -95,7 +95,7 @@ const handleUpdate = (id: undefined | string) => {
 				formData.isKeepAlive = res.data.isKeepAlive
 				formData.remark = res.data.remark
 				formData.sortNo = res.data.sortNo
-				formData.organDepartmentId = res.data.organDepartmentId
+				formData.ownerDepartmentId = res.data.ownerDepartmentId
 				formData.parentId = res.data.parentId
 				formData.parentNodeId = res.data.parentNodeId
 			})
@@ -135,7 +135,7 @@ const resetForm = () => {
 	formData.isKeepAlive = ""
 	formData.remark = ""
 	formData.sortNo = ""
-	formData.organDepartmentId = ""
+	formData.ownerDepartmentId = ""
 	formData.parentId = ""
 	formData.parentNodeId = ""
 }
@@ -157,7 +157,7 @@ const formData = reactive({
 	isKeepAlive: "",
 	remark: "",
 	sortNo: "",
-	organDepartmentId: "",
+	ownerDepartmentId: "",
 	parentId: "",
 	parentNodeId: ""
 })
@@ -186,7 +186,7 @@ const handleCreate = () => {
 					isKeepAlive: formData.isKeepAlive,
 					remark: formData.remark,
 					sortNo: formData.sortNo,
-					organDepartmentId: formData.organDepartmentId,
+					ownerDepartmentId: formData.ownerDepartmentId,
 					parentId: formData.parentId,
 					parentNodeId: formData.parentNodeId
 				}).then(() => {
@@ -210,7 +210,7 @@ const handleCreate = () => {
 					isKeepAlive: formData.isKeepAlive,
 					remark: formData.remark,
 					sortNo: formData.sortNo,
-					organDepartmentId: formData.organDepartmentId,
+					ownerDepartmentId: formData.ownerDepartmentId,
 					parentId: formData.parentId,
 					parentNodeId: formData.parentNodeId
 				}).then(() => {
@@ -243,7 +243,7 @@ const handleSaveAs = () => {
 				isKeepAlive: formData.isKeepAlive,
 				remark: formData.remark,
 				sortNo: formData.sortNo,
-				organDepartmentId: formData.organDepartmentId,
+				ownerDepartmentId: formData.ownerDepartmentId,
 				parentId: formData.parentId,
 				parentNodeId: formData.parentNodeId
 			}).then(() => {

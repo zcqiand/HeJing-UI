@@ -16,9 +16,9 @@
 			}
 		},
 		{
-			"path": "/management/common",
-			"name": "management-common",
-			"redirect": "/management/common/index",
+			"path": "/management/appEntity",
+			"name": "management-appEntity",
+			"redirect": "/management/common/appEntity",
 			"meta": {
 				"icon": "Management",
 				"title": "应用管理",
@@ -30,9 +30,9 @@
 			},
 			"children": [
 				{
-					"path": "/management/common/apps",
-					"name": "management-common-apps",
-					"component": "/management/common/apps/index",
+					"path": "/management/common/appEntity",
+					"name": "management-common-appEntity",
+					"component": "/management/common/appEntity/index",
 					"meta": {
 						"icon": "Document",
 						"title": "应用管理",
@@ -88,9 +88,9 @@
 			]
 		},
 		{
-			"path": "/management/organ",
-			"name": "management-organ",
-			"redirect": "/management/organ/index",
+			"path": "/management/ownerEntity",
+			"name": "management-ownerEntity",
+			"redirect": "/management/common/ownerEntity",
 			"meta": {
 				"icon": "Management",
 				"title": "组织机构",
@@ -102,9 +102,9 @@
 			},
 			"children": [
 				{
-					"path": "/management/common/organs",
-					"name": "management-common-organs",
-					"component": "/management/common/organs/index",
+					"path": "/management/common/ownerEntity",
+					"name": "management-common-ownerEntity",
+					"component": "/management/common/ownerEntity/index",
 					"meta": {
 						"icon": "Document",
 						"title": "机构管理",
@@ -116,9 +116,9 @@
 					}
 				},
 				{
-					"path": "/management/common/organRole",
-					"name": "management-common-organRole",
-					"component": "/management/common/organRole/index",
+					"path": "/management/common/ownerRole",
+					"name": "management-common-ownerRole",
+					"component": "/management/common/ownerRole/index",
 					"meta": {
 						"icon": "Document",
 						"title": "角色管理",
@@ -130,9 +130,9 @@
 					}
 				},
 				{
-					"path": "/management/common/organDepartment",
-					"name": "management-common-organDepartment",
-					"component": "/management/common/organDepartment/index",
+					"path": "/management/common/ownerDepartment",
+					"name": "management-common-ownerDepartment",
+					"component": "/management/common/ownerDepartment/index",
 					"meta": {
 						"icon": "Document",
 						"title": "部门管理",
@@ -144,9 +144,9 @@
 					}
 				},
 				{
-					"path": "/management/common/organEmployee",
-					"name": "management-common-organEmployee",
-					"component": "/management/common/organEmployee/index",
+					"path": "/management/common/ownerEmployee",
+					"name": "management-common-ownerEmployee",
+					"component": "/management/common/ownerEmployee/index",
 					"meta": {
 						"icon": "Document",
 						"title": "员工管理",

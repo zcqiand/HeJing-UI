@@ -3,7 +3,7 @@
 /* 新增 */
 export function createApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/common/appOperationLog/Create",
+		url: CommonBaseURL + "/api/appOperationLog/Create",
 		method: "post",
 		data
 	})
@@ -12,7 +12,7 @@ export function createApi(data: any) {
 /* 更新 */
 export function updateApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/common/appOperationLog/Update",
+		url: CommonBaseURL + "/api/appOperationLog/Update",
 		method: "post",
 		data
 	})
@@ -21,7 +21,7 @@ export function updateApi(data: any) {
 /* 删除 */
 export function deleteApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/common/appOperationLog/Delete",
+		url: CommonBaseURL + "/api/appOperationLog/Delete",
 		method: "post",
 		data
 	})
@@ -30,7 +30,7 @@ export function deleteApi(data: any) {
 /* 批量删除 */
 export function batchDeleteApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/common/appOperationLog/BatchDelete",
+		url: CommonBaseURL + "/api/appOperationLog/BatchDelete",
 		method: "post",
 		data
 	})
@@ -39,7 +39,7 @@ export function batchDeleteApi(data: any) {
 /* 获取清单 */
 export function queryApi(params: any) {
 	return request({
-		url: CommonBaseURL + "/common/appOperationLog/Query",
+		url: CommonBaseURL + "/api/appOperationLog/Query",
 		method: "get",
 		params
 	})
@@ -48,7 +48,7 @@ export function queryApi(params: any) {
 /* 获取详情 */
 export function getApi(params: any) {
 	return request({
-		url: CommonBaseURL + "/common/appOperationLog/Get",
+		url: CommonBaseURL + "/api/appOperationLog/Get",
 		method: "get",
 		params
 	})

@@ -3,7 +3,7 @@
 /* 新增 */
 export function createApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/api/appFunction/Create",
+		url: CommonBaseURL + "/api/appEntity/Create",
 		method: "post",
 		data
 	})
@@ -12,7 +12,7 @@ export function createApi(data: any) {
 /* 更新 */
 export function updateApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/api/appFunction/Update",
+		url: CommonBaseURL + "/api/appEntity/Update",
 		method: "post",
 		data
 	})
@@ -21,7 +21,7 @@ export function updateApi(data: any) {
 /* 删除 */
 export function deleteApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/api/appFunction/Delete",
+		url: CommonBaseURL + "/api/appEntity/Delete",
 		method: "post",
 		data
 	})
@@ -30,7 +30,7 @@ export function deleteApi(data: any) {
 /* 批量删除 */
 export function batchDeleteApi(data: any) {
 	return request({
-		url: CommonBaseURL + "/api/appFunction/BatchDelete",
+		url: CommonBaseURL + "/api/appEntity/BatchDelete",
 		method: "post",
 		data
 	})
@@ -39,7 +39,7 @@ export function batchDeleteApi(data: any) {
 /* 获取清单 */
 export function queryApi(params: any) {
 	return request({
-		url: CommonBaseURL + "/api/appFunction/Query",
+		url: CommonBaseURL + "/api/appEntity/Query",
 		method: "get",
 		params
 	})
@@ -48,7 +48,7 @@ export function queryApi(params: any) {
 /* 获取详情 */
 export function getApi(params: any) {
 	return request({
-		url: CommonBaseURL + "/api/appFunction/Get",
+		url: CommonBaseURL + "/api/appEntity/Get",
 		method: "get",
 		params
 	})

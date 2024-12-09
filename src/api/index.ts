@@ -102,4 +102,4 @@ class RequestHttp {
 
 export const http = new RequestHttp(config)
 export const request = http.service.request
-export const CommonBaseURL = import.meta.env.VITE_COMMON_API_URL as string
+export const CommonBaseURL = import.meta.env.VITE_COMMONSERVER_API_URL as string
