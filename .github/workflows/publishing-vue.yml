@@ -35,4 +35,4 @@ jobs:
           host: ${{ secrets.CLOUD_IP }}
           username: ${{ secrets.CLOUD_NAME }}
           password: ${{ secrets.CLOUD_PASSWORD }}
-          script:  cd /home/app/changli && sudo sh hejing-ui.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
+          script:  cd /home/app/hejing && sudo sh hejing-ui.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
