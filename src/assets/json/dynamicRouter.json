@@ -84,6 +84,20 @@
 						"isAffix": false,
 						"isKeepAlive": true
 					}
+				},
+				{
+					"path": "/management/common/appOperationLog",
+					"name": "management-common-appAuditLog",
+					"component": "/management/common/appOperationLog/index",
+					"meta": {
+						"icon": "Document",
+						"title": "审计日志",
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
 				}
 			]
 		},
@@ -92,8 +106,8 @@
 			"name": "management-ownerEntity",
 			"redirect": "/management/common/ownerEntity",
 			"meta": {
-				"icon": "Management",
-				"title": "组织机构",
+				"icon": "User",
+				"title": "租户管理",
 				"isLink": "",
 				"isHide": false,
 				"isFull": false,
@@ -108,20 +122,6 @@
 					"meta": {
 						"icon": "Document",
 						"title": "机构管理",
-						"isLink": "",
-						"isHide": false,
-						"isFull": false,
-						"isAffix": false,
-						"isKeepAlive": true
-					}
-				},
-				{
-					"path": "/management/common/ownerRole",
-					"name": "management-common-ownerRole",
-					"component": "/management/common/ownerRole/index",
-					"meta": {
-						"icon": "Document",
-						"title": "角色管理",
 						"isLink": "",
 						"isHide": false,
 						"isFull": false,
@@ -150,6 +150,20 @@
 					"meta": {
 						"icon": "Document",
 						"title": "员工管理",
+						"isLink": "",
+						"isHide": false,
+						"isFull": false,
+						"isAffix": false,
+						"isKeepAlive": true
+					}
+				},
+				{
+					"path": "/management/common/ownerRole",
+					"name": "management-common-ownerRole",
+					"component": "/management/common/ownerRole/index",
+					"meta": {
+						"icon": "Document",
+						"title": "角色管理",
 						"isLink": "",
 						"isHide": false,
 						"isFull": false,
