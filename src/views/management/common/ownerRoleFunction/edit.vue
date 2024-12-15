@@ -1,23 +1,23 @@
 ﻿<template>
-	<!-- 新增/修改 -->
-	<el-dialog v-model="dialogVisible" :title="currentUpdateId === undefined ? '新增' : '修改'" @close="resetForm" width="50%">
-		<el-form ref="formRef" :model="formData" :rules="formRules" label-width="100px" label-position="right">
-			<el-form-item prop="roleId" label="角色标识">
-				<el-input v-model="formData.roleId" placeholder="请输入" />
-			</el-form-item>
-			<el-form-item prop="resourceId" label="资源标识">
-				<el-input v-model="formData.resourceId" placeholder="请输入" />
-			</el-form-item>
-			<el-form-item prop="functionId" label="功能标识">
-				<el-input v-model="formData.functionId" placeholder="请输入" />
-			</el-form-item>
-			<el-form-item>
-				<el-button type="primary" @click="handleCreate">保存</el-button>
-				<el-button v-show="currentUpdateId !== undefined" @click="handleSaveAs">另存为</el-button>
-				<el-button @click="dialogVisible = false">取消</el-button>
-			</el-form-item>
-		</el-form>
-	</el-dialog>
+  <!-- 新增/修改 -->
+  <el-dialog v-model="dialogVisible" :title="currentUpdateId === undefined ? '新增' : '修改'" @close="resetForm" width="50%">
+    <el-form ref="formRef" :model="formData" :rules="formRules" label-width="100px" label-position="right">
+      <el-form-item prop="roleId" label="角色标识">
+        <el-input v-model="formData.roleId" placeholder="请输入" />
+      </el-form-item>
+      <el-form-item prop="resourceId" label="资源标识">
+        <el-input v-model="formData.resourceId" placeholder="请输入" />
+      </el-form-item>
+      <el-form-item prop="functionId" label="功能标识">
+        <el-input v-model="formData.functionId" placeholder="请输入" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="handleCreate">保存</el-button>
+        <el-button v-show="currentUpdateId !== undefined" @click="handleSaveAs">另存为</el-button>
+        <el-button @click="dialogVisible = false">取消</el-button>
+      </el-form-item>
+    </el-form>
+  </el-dialog>
 </template>
 
 <script lang="ts" setup>
@@ -35,93 +35,93 @@ onMounted(() => {})
 //设置表单
 const currentUpdateId = ref<undefined | string>(undefined)
 const handleUpdate = (id: undefined | string) => {
-	if (id === undefined) {
-		resetForm()
-	} else {
-		currentUpdateId.value = id
-		getApi({
-			id: id
-		})
-			.then((res: any) => {
-				formData.roleId = res.data.roleId
-				formData.resourceId = res.data.resourceId
-				formData.functionId = res.data.functionId
-			})
-			.catch(() => {
-				resetForm()
-			})
-			.finally(() => {})
-	}
-	dialogVisible.value = true
+  if (id === undefined) {
+    resetForm()
+  } else {
+    currentUpdateId.value = id
+    getApi({
+      id: id
+    })
+      .then((res: any) => {
+        formData.roleId = res.data.roleId
+        formData.resourceId = res.data.resourceId
+        formData.functionId = res.data.functionId
+      })
+      .catch(() => {
+        resetForm()
+      })
+      .finally(() => {})
+  }
+  dialogVisible.value = true
 }
 //重置表单
 const resetForm = () => {
-	currentUpdateId.value = undefined
-	formData.roleId = ""
-	formData.resourceId = ""
-	formData.functionId = ""
+  currentUpdateId.value = undefined
+  formData.roleId = ""
+  formData.resourceId = ""
+  formData.functionId = ""
 }
 //保存
 const dialogVisible = ref<boolean>(false)
 const formRef = ref<FormInstance | null>(null)
 const formData = reactive({
-	roleId: "",
-	resourceId: "",
-	functionId: ""
+  roleId: "",
+  resourceId: "",
+  functionId: ""
 })
 const formRules: FormRules = reactive({
-	roleId: [{ required: true, trigger: "blur", message: "请输入角色标识" }],
-	functionId: [{ required: true, trigger: "blur", message: "请输入功能标识" }]
+  roleId: [{ required: true, trigger: "blur", message: "请输入角色标识" }],
+  functionId: [{ required: true, trigger: "blur", message: "请输入功能标识" }]
 })
 const handleCreate = () => {
-	formRef.value?.validate((valid: boolean) => {
-		if (valid) {
-			if (currentUpdateId.value === undefined) {
-				createApi({
-					roleId: formData.roleId,
-					resourceId: formData.resourceId,
-					functionId: formData.functionId
-				}).then(() => {
-					dialogVisible.value = false
-					emit("success")
-				})
-			} else {
-				updateApi({
-					id: currentUpdateId.value,
-					roleId: formData.roleId,
-					resourceId: formData.resourceId,
-					functionId: formData.functionId
-				}).then(() => {
-					ElMessage.success("修改成功")
-					dialogVisible.value = false
-					emit("success")
-				})
-			}
-		} else {
-			return false
-		}
-	})
+  formRef.value?.validate((valid: boolean) => {
+    if (valid) {
+      if (currentUpdateId.value === undefined) {
+        createApi({
+          roleId: formData.roleId,
+          resourceId: formData.resourceId,
+          functionId: formData.functionId
+        }).then(() => {
+          dialogVisible.value = false
+          emit("success")
+        })
+      } else {
+        updateApi({
+          id: currentUpdateId.value,
+          roleId: formData.roleId,
+          resourceId: formData.resourceId,
+          functionId: formData.functionId
+        }).then(() => {
+          ElMessage.success("修改成功")
+          dialogVisible.value = false
+          emit("success")
+        })
+      }
+    } else {
+      return false
+    }
+  })
 }
 //另存为
 const handleSaveAs = () => {
-	formRef.value?.validate((valid: boolean) => {
-		if (valid) {
-			createApi({
-				roleId: formData.roleId,
-				resourceId: formData.resourceId,
-				functionId: formData.functionId
-			}).then(() => {
-				dialogVisible.value = false
-				emit("success")
-			})
-		} else {
-			return false
-		}
-	})
+  formRef.value?.validate((valid: boolean) => {
+    if (valid) {
+      createApi({
+        roleId: formData.roleId,
+        resourceId: formData.resourceId,
+        functionId: formData.functionId
+      }).then(() => {
+        dialogVisible.value = false
+        emit("success")
+      })
+    } else {
+      return false
+    }
+  })
 }
 //#endregion
 
 defineExpose({
-	handleUpdate
+  handleUpdate
 })
 </script>
