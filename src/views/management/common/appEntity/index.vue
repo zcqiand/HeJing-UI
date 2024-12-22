@@ -34,8 +34,8 @@
           </el-table-column>
           <el-table-column prop="enabledFlag" label="状态" width="90" align="center">
             <template #default="scope">
-              <el-tag :type="scope.row.enabledFlag === 'True' ? 'success' : 'warning'" disable-transitions>{{
-                scope.row.enabledFlag === "True" ? "启用" : "未启用"
+              <el-tag :type="scope.row.enabledFlag ? 'success' : 'warning'" disable-transitions>{{
+                scope.row.enabledFlag ? "启用" : "未启用"
               }}</el-tag></template
             >
           </el-table-column>
