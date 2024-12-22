@@ -54,6 +54,15 @@ export function queryTreeSelectApi(params: any) {
   })
 }
 
+/* 获取树表格清单 */
+export function queryTreeTableApi(params: any) {
+  return request({
+    url: CommonBaseURL + "/api/appResource/QueryTreeTable",
+    method: "get",
+    params
+  })
+}
+
 /* 获取详情 */
 export function getApi(params: any) {
   return request({

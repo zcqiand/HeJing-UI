@@ -8,6 +8,9 @@
       <el-form-item prop="name" label="名称">
         <el-input v-model="formData.name" placeholder="请输入" />
       </el-form-item>
+      <el-form-item label="启用">
+        <el-switch v-model="formData.enabledFlag" />
+      </el-form-item>
       <el-form-item prop="remark" label="备注">
         <el-input v-model="formData.remark" placeholder="请输入" />
       </el-form-item>
@@ -65,7 +68,7 @@ const resetForm = () => {
   formData.code = ""
   formData.name = ""
   formData.remark = ""
-  formData.enabledFlag = ""
+  formData.enabledFlag = false
   formData.sortNo = ""
 }
 //保存
@@ -75,7 +78,7 @@ const formData = reactive({
   code: "",
   name: "",
   remark: "",
-  enabledFlag: "",
+  enabledFlag: false,
   sortNo: ""
 })
 const formRules: FormRules = reactive({

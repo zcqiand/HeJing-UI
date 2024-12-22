@@ -28,8 +28,16 @@
       <div class="table-wrapper">
         <el-table :data="tableData" row-key="id" @selection-change="selectionChange" border default-expand-all>
           <el-table-column type="selection" width="50" align="center" />
+          <el-table-column prop="code" label="编号" width="90" align="center" />
           <el-table-column prop="name" label="名称">
             <template #default="scope">{{ scope.row.name }}</template>
+          </el-table-column>
+          <el-table-column prop="enabledFlag" label="状态" width="90" align="center">
+            <template #default="scope">
+              <el-tag :type="scope.row.enabledFlag === 'True' ? 'success' : 'warning'" disable-transitions>{{
+                scope.row.enabledFlag === "True" ? "启用" : "未启用"
+              }}</el-tag></template
+            >
           </el-table-column>
           <el-table-column prop="lastModifyTime" :formatter="dateFormat" label="最后更新时间" width="150" align="center" />
           <el-table-column fixed="right" label="操作" width="140" align="center">

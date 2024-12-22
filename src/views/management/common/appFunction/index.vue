@@ -28,6 +28,7 @@
       <div class="table-wrapper">
         <el-table :data="tableData" row-key="id" @selection-change="selectionChange" border default-expand-all>
           <el-table-column type="selection" width="50" align="center" />
+          <el-table-column prop="code" label="编号" width="90" align="center" />
           <el-table-column prop="name" label="名称">
             <template #default="scope">{{ scope.row.name }}</template>
           </el-table-column>

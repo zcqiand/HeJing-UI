@@ -81,7 +81,7 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
-import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/common/appResource"
+import { deleteApi, batchDeleteApi, queryTreeTableApi } from "@/api/management/common/appResource"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
@@ -134,14 +134,13 @@ const searchData = reactive({
 const tableData = ref<any[]>([])
 const queryTableData = () => {
   loading.value = true
-  queryApi({
+  queryTreeTableApi({
     pageIndex: paginationData.currentPage,
     pageSize: paginationData.pageSize,
     name: searchData.name || undefined
   })
     .then((res: any) => {
-      paginationData.total = res.data.total
-      tableData.value = res.data.items
+      tableData.value = res.data
     })
     .catch(() => {
       tableData.value = []
