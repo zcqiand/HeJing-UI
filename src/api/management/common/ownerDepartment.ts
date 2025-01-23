@@ -36,19 +36,28 @@ export function batchDeleteApi(data: any) {
   })
 }
 
-/* 获取清单 */
-export function queryApi(params: any) {
+/* 获取树清单 */
+export function queryTreeSelectApi(params: any) {
   return request({
-    url: CommonBaseURL + "/api/ownerDepartment/Query",
+    url: CommonBaseURL + "/api/ownerDepartment/QueryTreeSelect",
     method: "get",
     params
   })
 }
 
-/* 获取树清单 */
-export function queryTreeSelectApi(params: any) {
+/* 获取树表格清单 */
+export function queryTreeTableApi(params: any) {
   return request({
-    url: CommonBaseURL + "/api/ownerDepartment/QueryTreeSelect",
+    url: CommonBaseURL + "/api/ownerDepartment/QueryTreeTable",
+    method: "get",
+    params
+  })
+}
+
+/* 获取清单 */
+export function queryApi(params: any) {
+  return request({
+    url: CommonBaseURL + "/api/ownerDepartment/Query",
     method: "get",
     params
   })

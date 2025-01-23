@@ -3,13 +3,13 @@
     <el-card v-loading="loading" shadow="never">
       <el-row :gutter="10">
         <el-col :span="4">
-          <el-menu @select="handleownerEntityelect" class="sub-menu-wrapper" :default-active="ownerId">
-            <el-form ref="searchownerFormRef" :inline="true" :model="searchownerData" class="sub-search-wrapper">
+          <el-menu @select="handleOwnerEntitySelect" class="sub-menu-wrapper" :default-active="ownerId">
+            <el-form ref="searchOwnerFormRef" :inline="true" :model="searchOwnerData" class="sub-search-wrapper">
               <el-input
-                v-model="searchownerData.name"
+                v-model="searchOwnerData.name"
                 placeholder="输入关键字过滤"
                 :prefix-icon="Search"
-                @input="handleownerEntityearch"
+                @input="handleOwnerEntitySearch"
               />
             </el-form>
             <el-menu-item v-for="o in ownerData" :key="o.id" :index="o.id">
@@ -94,8 +94,8 @@
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
-import { queryApi as queryownerApi } from "@/api/management/common/ownerEntity"
-import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/common/ownerDepartment"
+import { queryApi as queryOwnerApi } from "@/api/management/common/ownerEntity"
+import { deleteApi, batchDeleteApi, queryTreeTableApi } from "@/api/management/common/ownerDepartment"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
@@ -112,13 +112,13 @@ onMounted(() => {
   if (route.query.ownerId !== undefined) {
     ownerId.value = route.query.ownerId as string
   }
-  queryownerData()
+  queryOwnerData()
 })
 
 watch(
   () => route.query.ownerId,
-  newownerId => {
-    ownerId.value = newownerId as string
+  newOwnerId => {
+    ownerId.value = newOwnerId as string
     queryTableData()
   }
 )
@@ -135,26 +135,26 @@ const dateFormat = (row: any, column: any) => {
 
 //#region 菜单
 //查询
-const handleownerEntityearch = () => {
-  queryownerData()
+const handleOwnerEntitySearch = () => {
+  queryOwnerData()
 }
 
 //选择
-const handleownerEntityelect = (key: string | undefined) => {
+const handleOwnerEntitySelect = (key: string | undefined) => {
   router.push(`?ownerId=${key}`)
 }
 
 //获取清单
-const searchownerFormRef = ref<FormInstance | null>(null)
-const searchownerData = reactive({
+const searchOwnerFormRef = ref<FormInstance | null>(null)
+const searchOwnerData = reactive({
   name: ""
 })
 const ownerData = ref<any[]>([])
-const queryownerData = () => {
-  queryownerApi({
+const queryOwnerData = () => {
+  queryOwnerApi({
     pageIndex: 1,
     pageSize: 2000,
-    name: searchownerData.name || undefined
+    name: searchOwnerData.name || undefined
   })
     .then((res: any) => {
       ownerData.value = res.data.items
@@ -200,15 +200,15 @@ const tableData = ref<any[]>([])
 const queryTableData = () => {
   if (ownerId.value !== undefined && ownerId.value.length > 0) {
     loading.value = true
-    queryApi({
+    queryTreeTableApi({
       pageIndex: paginationData.currentPage,
       pageSize: paginationData.pageSize,
       ownerId: ownerId.value,
       name: searchData.name || undefined
     })
       .then((res: any) => {
-        paginationData.total = res.data.total
-        tableData.value = res.data.items
+        paginationData.total = res.data.length
+        tableData.value = res.data
       })
       .catch(() => {
         tableData.value = []
