@@ -211,4 +211,3 @@ const handleBatchDelete = () => {
 <style lang="scss" scoped>
 @import "../../index";
 </style>
-@/api/management/common/appFunction

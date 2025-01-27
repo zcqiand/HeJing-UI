@@ -144,12 +144,12 @@
           }
         },
         {
-          "path": "/management/common/ownerRole",
-          "name": "management-common-ownerRole",
-          "component": "/management/common/ownerRole/index",
+          "path": "/management/common/ownerEmployee",
+          "name": "management-common-ownerEmployee",
+          "component": "/management/common/ownerEmployee/index",
           "meta": {
             "icon": "Document",
-            "title": "角色管理",
+            "title": "员工管理",
             "isLink": "",
             "isHide": false,
             "isFull": false,
@@ -158,12 +158,12 @@
           }
         },
         {
-          "path": "/management/common/ownerEmployee",
-          "name": "management-common-ownerEmployee",
-          "component": "/management/common/ownerEmployee/index",
+          "path": "/management/common/ownerRole",
+          "name": "management-common-ownerRole",
+          "component": "/management/common/ownerRole/index",
           "meta": {
             "icon": "Document",
-            "title": "员工管理",
+            "title": "角色管理",
             "isLink": "",
             "isHide": false,
             "isFull": false,

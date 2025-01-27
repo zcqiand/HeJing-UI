@@ -1,95 +1,151 @@
 ﻿<template>
   <div class="app-container">
     <el-card v-loading="loading" shadow="never">
-      <div class="search-wrapper">
-        <el-form ref="searchFormRef" :inline="true" :model="searchData">
-          <el-form-item prop="name" label="名称">
-            <el-input v-model="searchData.name" placeholder="请输入" />
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" :icon="Search" @click="handleSearch">查询</el-button>
-            <el-button :icon="Refresh" @click="resetSearch">重置</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
-      <div class="toolbar-wrapper">
-        <div>
-          <el-button type="primary" :icon="CirclePlus" @click="handleAdd">新增</el-button>
-          <el-button type="danger" :icon="Delete" :disabled="selection.length == 0" @click="handleBatchDelete"
-            >批量删除</el-button
-          >
-        </div>
-        <div>
-          <el-tooltip content="刷新表格">
-            <el-button type="primary" :icon="RefreshRight" circle @click="handleRefresh" />
-          </el-tooltip>
-        </div>
-      </div>
-      <div class="table-wrapper">
-        <el-table :data="tableData" row-key="id" @selection-change="selectionChange" border default-expand-all>
-          <el-table-column type="selection" width="50" align="center" />
-          <el-table-column prop="name" label="名称">
-            <template #default="scope">{{ scope.row.name }}</template>
-          </el-table-column>
-          <el-table-column prop="lastModifyTime" :formatter="dateFormat" label="最后更新时间" width="150" align="center" />
-          <el-table-column fixed="right" label="操作" width="140" align="center">
-            <template #default="scope">
-              <el-button type="primary" text bg size="small" @click="handleEdit(scope.row)">修改</el-button>
-              <el-dropdown
-                @command="
-                  (command: string) => {
-                    handleCommand(command, scope.row)
-                  }
-                "
+      <el-row :gutter="10">
+        <el-col :span="4">
+          <el-menu @select="handleOwnerEntitySelect" class="sub-menu-wrapper" :default-active="ownerId">
+            <el-form ref="searchOwnerFormRef" :inline="true" :model="searchOwnerData" class="sub-search-wrapper">
+              <el-input
+                v-model="searchOwnerData.name"
+                placeholder="输入关键字过滤"
+                :prefix-icon="Search"
+                @input="handleOwnerEntitySearch"
+              />
+            </el-form>
+            <el-menu-item v-for="o in ownerData" :key="o.id" :index="o.id">
+              <div>{{ o.name.substring(0, 12) }}<span v-if="o.name.length > 12">...</span></div>
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+        <el-col :span="20" v-if="ownerData.length > 0 && ownerId != undefined">
+          <div class="search-wrapper">
+            <el-form ref="searchFormRef" :inline="true" :model="searchData">
+              <el-form-item prop="name" label="名称">
+                <el-input v-model="searchData.name" placeholder="请输入" />
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" :icon="Search" @click="handleSearch">查询</el-button>
+                <el-button :icon="Refresh" @click="resetSearch">重置</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+          <div class="toolbar-wrapper">
+            <div>
+              <el-button type="primary" :icon="CirclePlus" @click="handleAdd">新增</el-button>
+              <el-button type="danger" :icon="Delete" :disabled="selection.length == 0" @click="handleBatchDelete"
+                >批量删除</el-button
               >
-                <el-button type="primary" text bg size="small" style="margin-left: 5px"
-                  >更多<el-icon class="el-icon--right"><arrow-down /></el-icon
-                ></el-button>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item command="delete">删除</el-dropdown-item>
-                  </el-dropdown-menu>
+            </div>
+            <div>
+              <el-tooltip content="刷新表格">
+                <el-button type="primary" :icon="RefreshRight" circle @click="handleRefresh" />
+              </el-tooltip>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <el-table :data="tableData" row-key="id" @selection-change="selectionChange" border default-expand-all>
+              <el-table-column type="selection" width="50" align="center" />
+              <el-table-column prop="name" label="名称">
+                <template #default="scope">{{ scope.row.name }}</template>
+              </el-table-column>
+              <el-table-column prop="lastModifyTime" :formatter="dateFormat" label="最后更新时间" width="150" align="center" />
+              <el-table-column fixed="right" label="操作" width="140" align="center">
+                <template #default="scope">
+                  <el-button type="primary" text bg size="small" @click="handleEdit(scope.row)">修改</el-button>
+                  <el-dropdown
+                    @command="
+                      (command: string) => {
+                        handleCommand(command, scope.row)
+                      }
+                    "
+                  >
+                    <el-button type="primary" text bg size="small" style="margin-left: 5px"
+                      >更多<el-icon class="el-icon--right"><arrow-down /></el-icon
+                    ></el-button>
+                    <template #dropdown>
+                      <el-dropdown-menu>
+                        <el-dropdown-item command="editEmployee">分配用户</el-dropdown-item>
+                        <el-dropdown-item command="editFunction">功能授权</el-dropdown-item>
+                        <el-dropdown-item command="editResource">资源授权</el-dropdown-item>
+                        <el-dropdown-item command="delete">删除</el-dropdown-item>
+                      </el-dropdown-menu>
+                    </template>
+                  </el-dropdown>
                 </template>
-              </el-dropdown>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-      <div class="pager-wrapper">
-        <el-pagination
-          background
-          :layout="paginationData.layout"
-          :page-sizes="paginationData.pageSizes"
-          :total="paginationData.total"
-          :page-size="paginationData.pageSize"
-          :current-page="paginationData.currentPage"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
+              </el-table-column>
+            </el-table>
+          </div>
+          <div class="pager-wrapper">
+            <el-pagination
+              background
+              :layout="paginationData.layout"
+              :page-sizes="paginationData.pageSizes"
+              :total="paginationData.total"
+              :page-size="paginationData.pageSize"
+              :current-page="paginationData.currentPage"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+            />
+          </div>
+        </el-col>
+      </el-row>
     </el-card>
-    <edit v-if="dialogVisible" ref="editRef" @success="handleSaveSuccess"></edit>
+    <edit v-if="dialogVisible" :owner-id="ownerId" ref="editRef" @success="handleSaveSuccess"></edit>
+    <editEmployee
+      v-if="dialogEmployeeVisible"
+      :owner-id="ownerId"
+      ref="editEmployeeRef"
+      @success="handleSaveSuccess"
+    ></editEmployee>
+    <editFunction
+      v-if="dialogFunctionVisible"
+      :owner-id="ownerId"
+      ref="editFunctionRef"
+      @success="handleSaveSuccess"
+    ></editFunction>
+    <editResource
+      v-if="dialogResourceVisible"
+      :owner-id="ownerId"
+      ref="editResourceRef"
+      @success="handleSaveSuccess"
+    ></editResource>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
 import { reactive, ref, watch, nextTick, onMounted } from "vue"
+import { queryApi as queryOwnerApi } from "@/api/management/common/ownerEntity"
 import { deleteApi, batchDeleteApi, queryApi } from "@/api/management/common/ownerRole"
 import { type FormInstance, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, Delete, CirclePlus, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
 import moment from "moment"
 import edit from "./edit.vue"
+import editEmployee from "./editEmployee.vue"
+import editFunction from "./editFunction.vue"
+import editResource from "./editResource.vue"
 
 //#region 初始化
+const ownerId = ref<string | undefined>(undefined)
 const loading = ref<boolean>(false)
 const router = useRouter()
 const route = useRoute()
 
 onMounted(() => {
-  queryTableData()
+  if (route.query.ownerId !== undefined) {
+    ownerId.value = route.query.ownerId as string
+  }
+  queryOwnerData()
 })
+
+watch(
+  () => route.query.ownerId,
+  newOwnerId => {
+    ownerId.value = newOwnerId as string
+    queryTableData()
+  }
+)
 
 //日期格式化
 const dateFormat = (row: any, column: any) => {
@@ -101,7 +157,57 @@ const dateFormat = (row: any, column: any) => {
 }
 //#endregion
 
+//#region 菜单
+//查询
+const handleOwnerEntitySearch = () => {
+  queryOwnerData()
+}
+
+//选择
+const handleOwnerEntitySelect = (key: string | undefined) => {
+  router.push(`?ownerId=${key}`)
+}
+
+//获取清单
+const searchOwnerFormRef = ref<FormInstance | null>(null)
+const searchOwnerData = reactive({
+  name: ""
+})
+const ownerData = ref<any[]>([])
+const queryOwnerData = () => {
+  queryOwnerApi({
+    pageIndex: 1,
+    pageSize: 2000,
+    name: searchOwnerData.name || undefined
+  })
+    .then((res: any) => {
+      ownerData.value = res.data.items
+      if (res.data.items !== undefined && res.data.items.length > 0) {
+        if (ownerId.value === undefined) {
+          ownerId.value = res.data.items[0].id
+        }
+        queryTableData()
+      }
+    })
+    .catch(() => {
+      ownerData.value = []
+    })
+    .finally(() => {})
+}
+//#endregion
+
 //#region 主体
+const editRef = ref<EditFormInstance | null>(null)
+const dialogVisible = ref<boolean>(false)
+//分配用户
+const editEmployeeRef = ref<EditFormInstance | null>(null)
+const dialogEmployeeVisible = ref<boolean>(false)
+//资源授权
+const editResourceRef = ref<EditFormInstance | null>(null)
+const dialogResourceVisible = ref<boolean>(false)
+//功能授权
+const editFunctionRef = ref<EditFormInstance | null>(null)
+const dialogFunctionVisible = ref<boolean>(false)
 //查询
 const handleSearch = () => {
   queryTableData()
@@ -127,29 +233,30 @@ const searchData = reactive({
 })
 const tableData = ref<any[]>([])
 const queryTableData = () => {
-  loading.value = true
-  queryApi({
-    pageIndex: paginationData.currentPage,
-    pageSize: paginationData.pageSize,
-    name: searchData.name || undefined
-  })
-    .then((res: any) => {
-      paginationData.total = res.data.total
-      tableData.value = res.data.items
+  if (ownerId.value !== undefined && ownerId.value.length > 0) {
+    loading.value = true
+    queryApi({
+      pageIndex: paginationData.currentPage,
+      pageSize: paginationData.pageSize,
+      ownerId: ownerId.value,
+      name: searchData.name || undefined
     })
-    .catch(() => {
-      tableData.value = []
-    })
-    .finally(() => {
-      loading.value = false
-    })
+      .then((res: any) => {
+        paginationData.total = res.data.total
+        tableData.value = res.data.items
+      })
+      .catch(() => {
+        tableData.value = []
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  }
 }
 //分页
 const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 watch([() => paginationData.currentPage, () => paginationData.pageSize], queryTableData, { immediate: true })
 //添加
-const editRef = ref<EditFormInstance | null>(null)
-const dialogVisible = ref<boolean>(false)
 const handleAdd = () => {
   dialogVisible.value = true
   nextTick(() => {
@@ -168,6 +275,21 @@ const handleCommand = (command: string, row: any) => {
   //删除
   if (command == "delete") {
     handleDelete(row)
+  } else if (command == "editEmployee") {
+    dialogEmployeeVisible.value = true
+    nextTick(() => {
+      editEmployeeRef.value?.handleUpdate(row.id)
+    })
+  } else if (command == "editFunction") {
+    dialogFunctionVisible.value = true
+    nextTick(() => {
+      editFunctionRef.value?.handleUpdate(row.id)
+    })
+  } else if (command == "editResource") {
+    dialogResourceVisible.value = true
+    nextTick(() => {
+      editResourceRef.value?.handleUpdate(row.id)
+    })
   }
 }
 //保存成功
@@ -210,4 +332,3 @@ const handleBatchDelete = () => {
 <style lang="scss" scoped>
 @import "../../index";
 </style>
-@/api/management/common/ownerRole
