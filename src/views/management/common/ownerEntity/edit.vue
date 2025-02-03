@@ -27,6 +27,9 @@
       <el-form-item prop="contactPersonTel" label="联系电话">
         <el-input v-model="formData.contactPersonTel" placeholder="请输入联系人电话" />
       </el-form-item>
+      <el-form-item label="启用">
+        <el-switch v-model="formData.enabledFlag" />
+      </el-form-item>
       <el-form-item prop="remark" label="备注">
         <el-input :rows="2" type="textarea" v-model="formData.remark" placeholder="请输入备注" />
       </el-form-item>
@@ -98,7 +101,7 @@ const resetForm = () => {
   formData.contactPerson = ""
   formData.contactPersonTel = ""
   formData.remark = ""
-  formData.enabledFlag = ""
+  formData.enabledFlag = false
   formData.sortNo = ""
 }
 //保存
@@ -115,13 +118,12 @@ const formData = reactive({
   contactPerson: "",
   contactPersonTel: "",
   remark: "",
-  enabledFlag: "",
+  enabledFlag: false,
   sortNo: ""
 })
 const formRules: FormRules = reactive({
   code: [{ required: true, trigger: "blur", message: "请输入编号" }],
   name: [{ required: true, trigger: "blur", message: "请输入名称" }],
-  enabledFlag: [{ required: true, trigger: "blur", message: "请输入是否启用" }],
   sortNo: [{ required: true, trigger: "blur", message: "请输入排序号" }]
 })
 const handleCreate = () => {

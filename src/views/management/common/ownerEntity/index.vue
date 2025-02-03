@@ -40,6 +40,13 @@
           <el-table-column prop="name" label="联系电话" width="150">
             <template #default="scope">{{ scope.row.contactPersonTel }}</template>
           </el-table-column>
+          <el-table-column prop="enabledFlag" label="状态" width="90" align="center">
+            <template #default="scope">
+              <el-tag :type="scope.row.enabledFlag ? 'success' : 'warning'" disable-transitions>{{
+                scope.row.enabledFlag ? "启用" : "未启用"
+              }}</el-tag></template
+            >
+          </el-table-column>
           <el-table-column prop="lastModifyTime" :formatter="dateFormat" label="最后更新时间" width="150" align="center" />
           <el-table-column fixed="right" label="操作" width="140" align="center">
             <template #default="scope">

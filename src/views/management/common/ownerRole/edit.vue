@@ -26,6 +26,9 @@ import { type FormInstance, type FormRules, ElMessage } from "element-plus"
 import { getApi, createApi, updateApi } from "@/api/management/common/ownerRole"
 
 //#region 初始化
+const props = defineProps({
+  ownerId: String
+})
 const emit = defineEmits(["success"])
 
 onMounted(() => {})
@@ -79,6 +82,7 @@ const handleCreate = () => {
     if (valid) {
       if (currentUpdateId.value === undefined) {
         createApi({
+          ownerId: props.ownerId,
           code: formData.code,
           name: formData.name,
           sortNo: formData.sortNo
@@ -89,6 +93,7 @@ const handleCreate = () => {
       } else {
         updateApi({
           id: currentUpdateId.value,
+          ownerId: props.ownerId,
           code: formData.code,
           name: formData.name,
           sortNo: formData.sortNo
@@ -106,6 +111,7 @@ const handleSaveAs = () => {
   formRef.value?.validate((valid: boolean) => {
     if (valid) {
       createApi({
+        ownerId: props.ownerId,
         code: formData.code,
         name: formData.name,
         sortNo: formData.sortNo
@@ -122,4 +128,3 @@ defineExpose({
   handleUpdate
 })
 </script>
-@/api/management/common/ownerRole
