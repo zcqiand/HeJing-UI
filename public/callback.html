@@ -5,15 +5,26 @@
     <title>Waiting...</title>
 </head>
 <body>
-    <script src="js/oidc-client.min.js"></script>
-    <script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client-ts/2.0.2/browser/oidc-client-ts.min.js"></script>
+  <script>
+      const userManager = new oidc.UserManager({
+          authority: 'https://identity.nanrong.store',
+          scope: 'openid offline_access',
+          client_id: 'hejing-ui',
+          redirect_uri: window.location.origin + '/callback.html',
+          response_type: 'code',
+          userStore: new oidc.WebStorageStateStore({ store: window.localStorage }),
+      });
 
-        var mgr = new Oidc.UserManager({ response_mode: 'query', userStore: new Oidc.WebStorageStateStore() }).signinRedirectCallback().then(function (user) {
-            window.location.href = '../';
-        }).catch(function (err) {
-            console.log(err);
-            });
-
-    </script>
+      (async () => {
+          try {
+              await userManager.signinCallback();
+          } catch (e) {
+              console.error(e);
+          } finally {
+              window.location.replace('../');
+          }
+      })();
+  </script>
 </body>
 </html>
