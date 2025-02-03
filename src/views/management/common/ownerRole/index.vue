@@ -64,7 +64,7 @@
                     ></el-button>
                     <template #dropdown>
                       <el-dropdown-menu>
-                        <el-dropdown-item command="editEmployee">分配用户</el-dropdown-item>
+                        <el-dropdown-item command="editEmployee">维护成员</el-dropdown-item>
                         <el-dropdown-item command="editFunction">功能授权</el-dropdown-item>
                         <el-dropdown-item command="editResource">资源授权</el-dropdown-item>
                         <el-dropdown-item command="delete">删除</el-dropdown-item>

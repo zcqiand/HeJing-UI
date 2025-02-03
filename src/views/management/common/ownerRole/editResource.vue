@@ -3,8 +3,8 @@
   <el-dialog v-model="dialogVisible" title="资源授权" @close="resetForm" width="50%">
     <div class="search-wrapper">
       <el-form ref="searchFormRef" :inline="true" :model="searchData">
-        <el-form-item prop="name" label="名称">
-          <el-input v-model="searchData.name" placeholder="请输入" />
+        <el-form-item prop="title" label="标题">
+          <el-input v-model="searchData.title" placeholder="请输入" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :icon="Search" @click="handleSearch">查询</el-button>
@@ -18,10 +18,18 @@
       </div>
     </div>
     <div class="table-wrapper">
-      <el-table :data="tableData" row-key="id" @selection-change="selectionChange" border default-expand-all>
+      <el-table
+        :data="tableData"
+        :tree-props="treeProps"
+        ref="multipleTableRef"
+        row-key="resourceId"
+        @selection-change="selectionChange"
+        border
+        default-expand-all
+      >
         <el-table-column type="selection" width="50" align="center" />
-        <el-table-column prop="name" label="名称">
-          <template #default="scope">{{ scope.row.name }}</template>
+        <el-table-column prop="title" label="标题">
+          <template #default="scope">{{ scope.row.title }}</template>
         </el-table-column>
       </el-table>
     </div>
@@ -42,9 +50,9 @@
 
 <script lang="ts" setup>
 import { reactive, ref, watch, defineExpose, onMounted } from "vue"
-import { type FormInstance, type FormRules, ElMessage } from "element-plus"
-import { getApi, createApi, updateApi } from "@/api/management/common/ownerRole"
-import { queryApi } from "@/api/management/common/ownerEmployee"
+import { type TableInstance, type FormInstance, ElMessage } from "element-plus"
+import { updateResourceApi } from "@/api/management/common/ownerRole"
+import { queryApi } from "@/api/management/common/ownerRoleResource"
 import { Search, Refresh, Select } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
 
@@ -54,6 +62,11 @@ const props = defineProps({
 })
 const emit = defineEmits(["success"])
 const loading = ref<boolean>(false)
+const multipleTableRef = ref<TableInstance>()
+const currentUpdateId = ref<undefined | string>(undefined)
+const treeProps = reactive({
+  checkStrictly: true
+})
 
 onMounted(() => {})
 //#endregion
@@ -77,7 +90,7 @@ const selectionChange = (items: any[]) => {
 //获取清单
 const searchFormRef = ref<FormInstance | null>(null)
 const searchData = reactive({
-  name: ""
+  title: ""
 })
 const tableData = ref<any[]>([])
 const queryTableData = () => {
@@ -85,12 +98,13 @@ const queryTableData = () => {
   queryApi({
     pageIndex: paginationData.currentPage,
     pageSize: paginationData.pageSize,
-    ownerId: props.ownerId,
-    name: searchData.name || undefined
+    roleId: currentUpdateId.value,
+    title: searchData.title || undefined
   })
     .then((res: any) => {
       paginationData.total = res.data.total
       tableData.value = res.data.items
+      selectRows(tableData.value)
     })
     .catch(() => {
       tableData.value = []
@@ -99,63 +113,42 @@ const queryTableData = () => {
       loading.value = false
     })
 }
+const selectRows = (data: any) => {
+  data.forEach(row => {
+    if (row.isRole) {
+      setTimeout(() => {
+        multipleTableRef.value!.toggleRowSelection(row, true)
+      })
+    }
+    if (row.children) {
+      selectRows(row.children) // 递归处理子节点
+    }
+  })
+}
 //分页
 const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 watch([() => paginationData.currentPage, () => paginationData.pageSize], queryTableData, { immediate: true })
 
 //设置表单
-const currentUpdateId = ref<undefined | string>(undefined)
 const handleUpdate = (id: undefined | string) => {
+  currentUpdateId.value = id
   queryTableData()
   dialogVisible.value = true
 }
 //重置表单
 const resetForm = () => {
   currentUpdateId.value = undefined
-  formData.code = ""
-  formData.name = ""
-  formData.sortNo = ""
 }
 //保存
 const dialogVisible = ref<boolean>(false)
-const formRef = ref<FormInstance | null>(null)
-const formData = reactive({
-  code: "",
-  name: "",
-  sortNo: ""
-})
-const formRules: FormRules = reactive({
-  code: [{ required: true, trigger: "blur", message: "请输入编号" }],
-  name: [{ required: true, trigger: "blur", message: "请输入名称" }],
-  sortNo: [{ required: true, trigger: "blur", message: "请输入排序号" }]
-})
 const handleCreate = () => {
-  formRef.value?.validate((valid: boolean) => {
-    if (valid) {
-      if (currentUpdateId.value === undefined) {
-        createApi({
-          ownerId: props.ownerId,
-          code: formData.code,
-          name: formData.name,
-          sortNo: formData.sortNo
-        }).then(() => {
-          dialogVisible.value = false
-          emit("success")
-        })
-      } else {
-        updateApi({
-          id: currentUpdateId.value,
-          ownerId: props.ownerId,
-          code: formData.code,
-          name: formData.name,
-          sortNo: formData.sortNo
-        }).then(() => {
-          ElMessage.success("修改成功")
-          dialogVisible.value = false
-          emit("success")
-        })
-      }
-    }
+  updateResourceApi({
+    id: currentUpdateId.value,
+    resourceIds: selection.value.map(v => v.resourceId)
+  }).then(() => {
+    ElMessage.success("修改成功")
+    dialogVisible.value = false
+    emit("success")
   })
 }
 //#endregion

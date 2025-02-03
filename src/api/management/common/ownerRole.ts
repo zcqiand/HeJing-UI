@@ -18,6 +18,33 @@ export function updateApi(data: any) {
   })
 }
 
+/* 更新成员 */
+export function updateEmployeeApi(data: any) {
+  return request({
+    url: CommonBaseURL + "/api/ownerRole/UpdateEmployee",
+    method: "post",
+    data
+  })
+}
+
+/* 更新成员 */
+export function updateFunctionApi(data: any) {
+  return request({
+    url: CommonBaseURL + "/api/ownerRole/UpdateFunction",
+    method: "post",
+    data
+  })
+}
+
+/* 更新成员 */
+export function updateResourceApi(data: any) {
+  return request({
+    url: CommonBaseURL + "/api/ownerRole/UpdateResource",
+    method: "post",
+    data
+  })
+}
+
 /* 删除 */
 export function deleteApi(data: any) {
   return request({
