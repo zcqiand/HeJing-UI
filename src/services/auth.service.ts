@@ -26,11 +26,11 @@ export default class AuthService {
     return this.userManager.signinRedirect()
   }
 
-  public callback(): Promise<User | null> {
+  public callback(): Promise<User | undefined> {
     return this.userManager.signinCallback()
   }
 
-  public silentCallback(): Promise<User | null> {
+  public silentCallback(): Promise<User | undefined> {
     return this.userManager.signinSilentCallback()
   }
 

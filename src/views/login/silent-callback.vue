@@ -10,7 +10,7 @@ const auth = new AuthService()
 
 onMounted(() => {
   auth
-    .silentrenew()
+    .silentCallback()
     .then(function (user) {
       window.location.href = "../"
     })
